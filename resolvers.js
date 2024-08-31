@@ -15,10 +15,10 @@ const resolvers = {
           console.log(args)
           if(args.author !== undefined){
               const author =  await Author.findOne({name:args.author})
-              return  Book.find({author:author.id})
+              return  Book.find({author:author.id}).populate('author')
           }
           else if(args.genre !== undefined ){
-              return  Book.find({genres:args.genre})
+              return  Book.find({genres:args.genre}).populate('author')
           }
           else return (Book.find({}).populate('author'))
       },
